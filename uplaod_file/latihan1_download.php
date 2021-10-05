@@ -1,5 +1,5 @@
 <?php
-$myDir = "E:/";
+$myDir = "C:/xampp/htdocs/PraktikumPWD/uplaod_file";
 $dir = opendir($myDir);
 echo "Isi folder (klik link untuk download : <br>";
 while($tmp = readdir($dir)){
