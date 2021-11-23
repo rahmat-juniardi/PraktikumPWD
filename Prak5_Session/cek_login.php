@@ -24,4 +24,27 @@
 	}
 
 	mysqli_close($con);
+
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<table>
+		<th>
+			<td>Tulisan Belakang</td>
+			<td>Nama Kucing</td>
+			<td>Liontin</td>
+		</th>
+		<tr>
+			<td><input type="text" name="tulisanBelakang"></td>
+			<td><input type="text" name="namaKucing"></td>
+			<td><input type="text" name="liontin"></td>
+		</tr>
+		<tr></tr>
+	</table>
+</body>
+</html>

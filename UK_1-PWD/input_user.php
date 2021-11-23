@@ -14,6 +14,6 @@
 		echo "failed";
 	}
 
-	header('location:tampil_user.php');
+	header('location:form_login.php');
 	
  ?>
