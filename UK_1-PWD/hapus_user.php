@@ -1,9 +1,14 @@
 <?php
-	include_once("koneksi.php");
+	$host= 'localhost';
+	$name= 'db_akademik';
+	$username = 'root';
+	$password = '';
 
-	$id = $_GET['id'];
+	$con = mysqli_connect($host, $username, $password, $name);
 
-	$result = mysqli_query($con, "DELETE FROM users WHERE id_user='$id'");
+	$id = $_GET['user_data'];
 
-	header('location:tampil_user.php');
+	$result = mysqli_query($con, "DELETE FROM penjualan WHERE nama_kucing='$id'");
+
+	
 ?>

@@ -29,7 +29,8 @@
 			// echo "id user =",$_SESSION['iduser'],"<br>";
 			// echo "password=",$_SESSION['passuser'],"<br>";
 			// echo "<a href=logout.php><b>LOGOUT</b></a></center>";
-			require_once ('halaman_home.php');
+			 require_once ('halaman_home.php');
+			//header("Location: halaman_home.php");
 		}
 		else{
 			echo '<div style="top: 100px; width: 400px;" class="container alert alert-danger" role="alert"> Username dan Password Salah!</div>';

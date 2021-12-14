@@ -12,6 +12,8 @@
  </head>
  <body>
  	<a href="tambah.php">Tambah Data Baru</a>
+ 	|
+ 	<a href="../Prak8/lap_mhs.php">Cetak</a>
 
  	<table width="80%" border=1>
  		<tr>

@@ -26,35 +26,13 @@
  	<?php 
  		if(isset($_GET['cari'])){
  			$cari=$_GET['cari'];
- 			$sql2="select mahasiswa.nim, 
-			mahasiswa.nama, 
-			matakuliah.kode, 
-			matakuliah.namamk, 
-			khs.nilai 
-			
-			from mahasiswa JOIN khs
-			ON mahasiswa.nim = khs.nim
-			
-			JOIN matakuliah 
-			ON khs.kodeMK = matakuliah.kode 
-
-			where khs.nim LIKE '%".$cari."%'";
+ 			
 
  			$sql="select * from khs where nim like'%".$cari."%'";
  			$tampil = mysqli_query($con,$sql);
  		}else{
  			$sql="select * from khs";
- 			$sql2="select mahasiswa.nim, 
-			mahasiswa.nama, 
-			matakuliah.kode, 
-			matakuliah.namamk, 
-			khs.nilai 
-			
-			from mahasiswa JOIN khs
-			ON mahasiswa.nim = khs.nim
-			
-			JOIN matakuliah 
-			ON khs.kodeMK = matakuliah.kode";
+ 			
  			$tampil=mysqli_query($con,$sql2);
  		}
  		$no=1;

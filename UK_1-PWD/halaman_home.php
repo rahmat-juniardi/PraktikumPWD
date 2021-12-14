@@ -1,5 +1,5 @@
     <?php
-        $username = $_SESSION['iduser'];
+        // $username = $_SESSION['iduser'];
 
         $con = mysqli_connect('localhost', 'root', '', 'db_penjualantreatandtail');
 
@@ -86,7 +86,7 @@
       <img src="https://cf.shopee.co.id/file/bf9360246d76a7c318081b87242532eb_tn" alt="TreatAndTailLogo" class="ms-3">
   </div>
   <p class="link-light h4 mt-3 ms-3">Admin Sekarang</p>
-  <p class="link-light h3 ms-3"> - <?php echo $username ?> -</p>
+  <!-- <p class="link-light h3 ms-3"> - <?php echo $username ?> -</p> -->
   <!-- <a href="#">About</a>
   <a href="#">Services</a>
   <a href="#">Clients</a>
@@ -101,7 +101,20 @@
         <button type="button" onclick="btnLogout()" class="btn btn-outline-dark">Logout</button>
     </div>
     <div class="container">
-        <button type="button" class="btn btn-success mb-3" onclick="btnTambahdata()">Tambah Data</button>
+        <div>
+          <button type="button" class="btn btn-success mb-3" onclick="btnTambahdata()">Tambah Data</button>
+        </div>
+        
+        <form action="" method="get">
+          <div class="input-group">
+            <input type="search" class="form-control rounded" placeholder="Name Cat - Ex. Muezza" aria-label="Search"
+            aria-describedby="search-addon" name="cari" />
+
+            <input type="submit" value="Search" class="btn btn-outline-primary"></button>
+          </div>
+        </form>
+        <br/><br/>
+
         <table class="table">
         <thead>
             <tr>
@@ -114,20 +127,32 @@
             </tr>
           </thead>
           <tbody>
+
             <?php 
-              $no = 0;
-              while($user_data = mysqli_fetch_array($result)) {
-                $no+=1;
-                echo "<tr>";
-                echo "<td>".$no."</td>";
-                echo "<td>".$user_data['tulisan_belakang']."</td>";
-                echo "<td>".$user_data['nama_kucing']."</td>";
-                echo "<td>".$user_data['jenis_liontin']."</td>";
-                echo "<td>".$user_data['nomor_design']."</td>";
-                echo "<td><a href='delete.php?nim=$user_data[nama_kucing]' class='link-danger'>Delete</a></td>";
-                echo "</tr>";
+              if(isset($_GET['cari'])){
+                $cari = $_GET['cari'];
+                $sql="select * from penjualan where nama_kucing like'%".$cari."%'";
+                $tampil = mysqli_query($con,$sql);
+              }else{
+                $sql="select * from penjualan";
+                $tampil = mysqli_query($con,$sql);
               }
+              $no = 1;
+              while($user_data = mysqli_fetch_array($tampil)){
             ?>
+            <tr>
+              <td><?php echo $no++; ?></td>
+              <td><?php echo $user_data['tulisan_belakang'];?></td>
+              <td><?php echo $user_data['nama_kucing'];?></td>
+              <td><?php echo $user_data['jenis_liontin'];?></td>
+              <td><?php echo $user_data['nomor_design']; ?></td>
+              <td><a href='delete.php?nama_kucing=$user_data[nama_kucing]' class='link-danger'>Delete</a></td>
+              
+            </tr>
+
+            <?php } ?>
+
+          
             
           </tbody>
         </table>
@@ -144,6 +169,11 @@
       document.getElementById("mySidebar").style.width = "0";
       document.getElementById("main").style.marginLeft= "0";
     }
+
+    function cari() {
+
+    }
+
 </script>
 
 <script type="text/javascript">
