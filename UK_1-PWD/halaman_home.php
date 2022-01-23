@@ -1,5 +1,6 @@
     <?php
-        // $username = $_SESSION['iduser'];
+        $username =  $_SESSION['iduser'];
+  
 
         $con = mysqli_connect('localhost', 'root', '', 'db_penjualantreatandtail');
 
@@ -86,11 +87,7 @@
       <img src="https://cf.shopee.co.id/file/bf9360246d76a7c318081b87242532eb_tn" alt="TreatAndTailLogo" class="ms-3">
   </div>
   <p class="link-light h4 mt-3 ms-3">Admin Sekarang</p>
-  <!-- <p class="link-light h3 ms-3"> - <?php echo $username ?> -</p> -->
-  <!-- <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a> -->
+  <p class="link-light h3 ms-3"> - <?php echo $username ?> -</p>
 </div>
 
 <div id="main">
@@ -103,6 +100,10 @@
     <div class="container">
         <div>
           <button type="button" class="btn btn-success mb-3" onclick="btnTambahdata()">Tambah Data</button>
+          <button type="button" class="btn btn-primary mb-3" onclick="btnExportPdf()">Export PDF</button>
+          <button type="button" class="btn btn-primary mb-3" onclick="btnExportJson()">Export JSON</button>
+          <button type="button" class="btn btn-primary mb-3" onclick="btnExportXML()">Export XML</button>
+          <button type="button" class="btn btn-primary mb-3" onclick="btnWebService()">Web Service</button>
         </div>
         
         <form action="" method="get">
@@ -138,19 +139,21 @@
                 $tampil = mysqli_query($con,$sql);
               }
               $no = 1;
-              while($user_data = mysqli_fetch_array($tampil)){
-            ?>
-            <tr>
-              <td><?php echo $no++; ?></td>
-              <td><?php echo $user_data['tulisan_belakang'];?></td>
-              <td><?php echo $user_data['nama_kucing'];?></td>
-              <td><?php echo $user_data['jenis_liontin'];?></td>
-              <td><?php echo $user_data['nomor_design']; ?></td>
-              <td><a href='delete.php?nama_kucing=$user_data[nama_kucing]' class='link-danger'>Delete</a></td>
               
-            </tr>
+              while($user_data = mysqli_fetch_array($tampil)) {
+                echo "<tr>";
+                echo "<td>".$no++."</td>";
+                echo "<td>".$user_data['tulisan_belakang']."</td>";
+                echo "<td>".$user_data['nama_kucing']."</td>";
+                echo "<td>".$user_data['jenis_liontin']."</td>";
+                echo "<td>".$user_data['nomor_design']."</td>";
+                echo "<td><a href='edit.php?nama_kucing=$user_data[nama_kucing]'>Edit</a> | <a href='delete.php?nama_kucing=$user_data[nama_kucing]'>Delete</a></td>";
+                echo "</tr>";
+              }
+            
 
-            <?php } ?>
+             ?>
+            
 
           
             
@@ -182,6 +185,18 @@
     }
     function btnTambahdata(){
       location.href = "tambahData.php";
+    }
+    function btnExportPdf(){
+      location.href = "export_data_to_pdf.php";
+    }
+    function btnExportJson(){
+       window.open( "export_data_to_json.php", "_blank");
+     }
+    function btnExportXML(){
+      window.open( "export_data_to_xml.php", "_blank");
+    }
+    function btnWebService(){
+      location.href = "aksesDataPenjualan.php";
     }
 </script>
 

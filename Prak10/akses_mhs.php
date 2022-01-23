@@ -12,5 +12,6 @@
 		echo "Alamat : " . $r->alamat . "<br />";
 		echo "Tgl Lahir : " . $r->tgllhr . "<br />";
 		echo "</p>";
+			
 	}
  ?>
